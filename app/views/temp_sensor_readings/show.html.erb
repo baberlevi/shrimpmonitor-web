@@ -1,0 +1,29 @@
+<%- model_class = TempSensorReading -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:reading_timestamp) %>:</strong></dt>
+  <dd><%= @temp_sensor_reading.reading_timestamp.in_time_zone("America/Chicago") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:temp_reading_value) %>:</strong></dt>
+  <dd><%= @temp_sensor_reading.temp_reading_value.to_s + " " + @temp_sensor_reading.display_type%></dd>
+  <dt><strong><%= model_class.human_attribute_name(:tank_id) %>:</strong></dt>
+  <dd><%= @temp_sensor_reading.tank_id %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              temp_sensor_readings_path, :class => 'btn'  %>
+  <% if (can? :update, TempSensorReading) %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_temp_sensor_reading_path(@temp_sensor_reading), :class => 'btn' %>
+  <% end %>
+  <% if (can? :destroy, TempSensorReading) %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              temp_sensor_reading_path(@temp_sensor_reading),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+  <% end %>
+</div>

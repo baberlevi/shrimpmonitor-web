@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reading_timestamp: 2014-04-15 22:39:30
+  do_reading_value: 1.5
+  do_percent_reading: 1.5
+  tank_id: 1
+
+two:
+  reading_timestamp: 2014-04-15 22:39:30
+  do_reading_value: 1.5
+  do_percent_reading: 1.5
+  tank_id: 1

@@ -1,0 +1,26 @@
+<%= form_for @orp_sensor_reading, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :reading_timestamp, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reading_timestamp, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :orp_reading_value, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :orp_reading_value, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :tank_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :tank_id, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                orp_sensor_readings_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -1,0 +1,45 @@
+<%= form_for(@tank_warning_threshold) do |f| %>
+  <% if @tank_warning_threshold.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tank_warning_threshold.errors.count, "error") %> prohibited this tank_warning_threshold from being saved:</h2>
+
+      <ul>
+      <% @tank_warning_threshold.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tank_id %><br>
+    <%= f.number_field :tank_id %>
+  </div>
+  <div class="field">
+    <%= f.label :ph_threshold %><br>
+    <%= f.text_field :ph_threshold %>
+  </div>
+  <div class="field">
+    <%= f.label :do_threshold %><br>
+    <%= f.text_field :do_threshold %>
+  </div>
+  <div class="field">
+    <%= f.label :orp_threshold %><br>
+    <%= f.text_field :orp_threshold %>
+  </div>
+  <div class="field">
+    <%= f.label :k1_threshold %><br>
+    <%= f.text_field :k1_threshold %>
+  </div>
+  <div class="field">
+    <%= f.label :k10_threshold %><br>
+    <%= f.text_field :k10_threshold %>
+  </div>
+  <div class="field">
+    <%= f.label :temp_threshold %><br>
+    <%= f.text_field :temp_threshold %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

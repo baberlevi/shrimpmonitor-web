@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reading_timestamp: 2014-04-05 22:02:07
+  ec_reading_value: 1.5
+  tds_reading_value: 1.5
+  sal_reading_value: 1
+  tank_id: 1
+
+two:
+  reading_timestamp: 2014-04-05 22:02:07
+  ec_reading_value: 1.5
+  tds_reading_value: 1.5
+  sal_reading_value: 1
+  tank_id: 1

@@ -1,0 +1,32 @@
+<%= form_for @ph_sensor_reading, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :reading_timestamp, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reading_timestamp, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :ph_reading_value, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ph_reading_value, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :sensor_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :sensor_id, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :tank_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :tank_id, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                ph_sensor_readings_path, :class => 'btn' %>
+  </div>
+<% end %>

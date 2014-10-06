@@ -1,0 +1,2 @@
+module K10SensorReadingsHelper
+end

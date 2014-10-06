@@ -1,0 +1,63 @@
+<%- model_class = K1SensorReading -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => "Salinity (K1) Sensor Readings" %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:reading_timestamp) %></th>
+      <th>Electrical Conductivity µs/cm</th>
+      <th>Total Dissolved Solids mg/L</th>
+      <th>Salinity - psu</th>
+      <th><%= model_class.human_attribute_name(:tank_id) %></th>
+      <% if (can? :update, K1SensorReading) || (can? :destroy,K1SensorReading) %>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @k1_sensor_readings.order('created_at DESC').each do |k1_sensor_reading| %>
+      <tr>
+        <td><%= link_to k1_sensor_reading.id, k1_sensor_reading_path(k1_sensor_reading) %></td>
+        <td><%= k1_sensor_reading.reading_timestamp.in_time_zone("America/Chicago") %></td>
+        <td><%= k1_sensor_reading.ec_reading_value %></td>
+        <td><%= k1_sensor_reading.tds_reading_value %></td>
+        <td><%= k1_sensor_reading.sal_reading_value %></td>
+        <td><%= k1_sensor_reading.tank_id %></td>
+        <% if (can? :update, K1SensorReading) %>
+          <td>
+          	<%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_k1_sensor_reading_path(k1_sensor_reading), :class => 'btn btn-mini' %>
+	  </td>
+        <% end %>
+        <% if (can? :destroy, K1SensorReading) %>
+          <td>
+     	    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      k1_sensor_reading_path(k1_sensor_reading),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+	  </td>
+	<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if (can? :create, K1SensorReading) %>
+	<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_k1_sensor_reading_path,
+            :class => 'btn btn-primary' %>
+<% end %>
+
+<br><br>
+
+<%-# this creates the page X,Y,Z at the bottom -%>
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @k1_sensor_readings %>
+    </div>
+    <%= will_paginate @k1_sensor_readings, :container => false %>
+</div>
+

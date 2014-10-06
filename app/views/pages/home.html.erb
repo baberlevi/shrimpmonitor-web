@@ -1,0 +1,401 @@
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line{
+  fill: none;
+  stroke: black;
+  stroke-width: 3px;
+}
+
+.line.linedo {
+  stroke: blue;
+}
+
+
+.line.linetemp {
+  stroke: red;
+}
+
+.line.lineph {
+  stroke: pink;
+}
+
+.line.linesal {
+  stroke: gray;
+}
+
+.line.lineorp {
+  stroke: brown;
+}
+
+</style>
+
+
+<script>
+
+//later should collapse these into one function with parameters passed in
+
+function draw_do_graph(){
+
+var margin = {top: 10, right: 20, bottom: 20, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 150 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%LZ").parse;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var line = d3.svg.line()
+    .x(function(d) { return x(d.reading_timestamp); })
+    .y(function(d) { return y(d.do_reading_value); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.json('/do_data.json', function(error, data) { 
+  data.forEach(function(d) {
+    //console.log(d);
+    //console.log(d.reading_timestamp);
+    //console.log(d.do_reading_value);
+    d.reading_timestamp = parseDate(d.reading_timestamp);
+    d.do_reading_value = +d.do_reading_value;
+    //console.log(d);
+  });
+
+  x.domain(d3.extent(data, function(d) { return d.reading_timestamp; }));
+  y.domain(d3.extent(data, function(d) { return d.do_reading_value; }));
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("DO mg/L");
+
+  svg.append("path")
+      .datum(data)
+      .attr("class", "line linedo")
+      .attr("d", line);
+});
+}
+
+//new function fix spacing later
+function draw_temp_graph(){
+
+var margin = {top: 10, right: 20, bottom: 20, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 150 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%LZ").parse;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var line = d3.svg.line()
+    .x(function(d) { return x(d.reading_timestamp); })
+    .y(function(d) { return y(d.temp_reading_value); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.json('/temp_data.json', function(error, data) { 
+  data.forEach(function(d) {
+    //console.log(d);
+    //console.log(d.reading_timestamp);
+    //console.log(d.temp_reading_value);
+    d.reading_timestamp = parseDate(d.reading_timestamp);
+    d.temp_reading_value = +d.temp_reading_value;
+    //console.log(d);
+  });
+
+  x.domain(d3.extent(data, function(d) { return d.reading_timestamp; }));
+  y.domain(d3.extent(data, function(d) { return d.temp_reading_value; }));
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Degrees C");
+
+  svg.append("path")
+      .datum(data)
+      .attr("class", "line linetemp")
+      .attr("d", line);
+});
+}
+
+
+//new function fix spacing later
+function draw_ph_graph(){
+
+var margin = {top: 10, right: 20, bottom: 20, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 150 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%LZ").parse;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var line = d3.svg.line()
+    .x(function(d) { return x(d.reading_timestamp); })
+    .y(function(d) { return y(d.ph_reading_value); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.json('/ph_data.json', function(error, data) { 
+  data.forEach(function(d) {
+    //console.log(d);
+    //console.log(d.reading_timestamp);
+    //console.log(d.ph_reading_value);
+    d.reading_timestamp = parseDate(d.reading_timestamp);
+    d.ph_reading_value = +d.ph_reading_value;
+    //console.log(d);
+  });
+
+  x.domain(d3.extent(data, function(d) { return d.reading_timestamp; }));
+  y.domain(d3.extent(data, function(d) { return d.ph_reading_value; }));
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("pH");
+
+  svg.append("path")
+      .datum(data)
+      .attr("class", "line lineph")
+      .attr("d", line);
+});
+}
+
+
+//new function fix spacing later
+function draw_sal_graph(){
+
+var margin = {top: 10, right: 20, bottom: 20, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 150 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%LZ").parse;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var line = d3.svg.line()
+    .x(function(d) { return x(d.reading_timestamp); })
+    .y(function(d) { return y(d.sal_reading_value); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.json('/sal_data.json', function(error, data) { 
+  data.forEach(function(d) {
+    //console.log(d);
+    //console.log(d.reading_timestamp);
+    //console.log(d.sal_reading_value);
+    d.reading_timestamp = parseDate(d.reading_timestamp);
+    d.sal_reading_value = +d.sal_reading_value;
+    //console.log(d);
+  });
+
+  x.domain(d3.extent(data, function(d) { return d.reading_timestamp; }));
+  y.domain(d3.extent(data, function(d) { return d.sal_reading_value; }));
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("PSS");
+
+  svg.append("path")
+      .datum(data)
+      .attr("class", "line linesal")
+      .attr("d", line);
+});
+}
+
+//new function fix spacing later
+function draw_orp_graph(){
+
+var margin = {top: 10, right: 20, bottom: 20, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 150 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%LZ").parse;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var line = d3.svg.line()
+    .x(function(d) { return x(d.reading_timestamp); })
+    .y(function(d) { return y(d.orp_reading_value); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.json('/orp_data.json', function(error, data) { 
+  data.forEach(function(d) {
+    //console.log(d);
+    //console.log(d.reading_timestamp);
+    //console.log(d.orp_reading_value);
+    d.reading_timestamp = parseDate(d.reading_timestamp);
+    d.orp_reading_value = +d.orp_reading_value;
+    //console.log(d);
+  });
+
+  x.domain(d3.extent(data, function(d) { return d.reading_timestamp; }));
+  y.domain(d3.extent(data, function(d) { return d.orp_reading_value; }));
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("mV");
+
+  svg.append("path")
+      .datum(data)
+      .attr("class", "line lineorp")
+      .attr("d", line);
+});
+}
+
+
+draw_do_graph();
+draw_temp_graph();
+draw_ph_graph();
+draw_sal_graph();
+draw_orp_graph();
+
+
+</script>

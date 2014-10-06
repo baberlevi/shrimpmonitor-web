@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reading_timestamp: 2014-04-05 22:00:46
+  orp_reading_value: 1.5
+  tank_id: 1
+
+two:
+  reading_timestamp: 2014-04-05 22:00:46
+  orp_reading_value: 1.5
+  tank_id: 1

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shrimpmonitor</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<%= nav_bar :fixed => :top, :responsive => true, :brand => "ShrimpMonitor" do %>
+    <%= menu_group do %>
+        <%= menu_item "DO", do_sensor_readings_path %>
+        <%= menu_item "Temp", temp_sensor_readings_path %>
+        <%= menu_item "pH", ph_sensor_readings_path %>
+	<%= menu_item "Salinity1", k1_sensor_readings_path %>
+	<%= menu_item "Salinity10", k10_sensor_readings_path %>
+	<%= menu_item "ORP", orp_sensor_readings_path %>
+    <% end %>
+    <% if current_user %>
+	<%= menu_text current_user.email, :pull => :right %>
+    <% end %>
+    <% if current_user && 1==2 %>
+        <%= menu_item "Log Out", log_out_path %>
+    <% elsif 1==2 %>
+        <% menu_group :pull => :right do %>
+            <%= menu_item "Sign Up", registration_path %>
+            <% form_for @user, :url => session_path(:user) do |f| -%>
+              <p><%= f.text_field :email %></p>
+              <p><%= f.password_field :password %></p>
+              <p><%= f.submit "Sign in" %></p>
+            <% end -%>
+        <% end %>
+    <% end %>
+<% end %>
+	
+<% if notice %>
+<div class="alert alert-warning alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= notice %>
+</div>
+<% end %>
+
+<% if alert %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= alert %>
+</div>
+<% end %>
+
+
+<%= yield %>
+
+</body>
+</html>

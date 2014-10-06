@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tank:</strong>
+  <%= @tank_alarm_threshold.tank_id %>
+</p>
+
+<p>
+  <strong>Ph threshold:</strong>
+  <%= @tank_alarm_threshold.ph_threshold %>
+</p>
+
+<p>
+  <strong>Do threshold:</strong>
+  <%= @tank_alarm_threshold.do_threshold %>
+</p>
+
+<p>
+  <strong>Orp threshold:</strong>
+  <%= @tank_alarm_threshold.orp_threshold %>
+</p>
+
+<p>
+  <strong>K1 threshold:</strong>
+  <%= @tank_alarm_threshold.k1_threshold %>
+</p>
+
+<p>
+  <strong>K10 threshold:</strong>
+  <%= @tank_alarm_threshold.k10_threshold %>
+</p>
+
+<p>
+  <strong>Temp threshold:</strong>
+  <%= @tank_alarm_threshold.temp_threshold %>
+</p>
+
+<%= link_to 'Edit', edit_tank_alarm_threshold_path(@tank_alarm_threshold) %> |
+<%= link_to 'Back', tank_alarm_thresholds_path %>

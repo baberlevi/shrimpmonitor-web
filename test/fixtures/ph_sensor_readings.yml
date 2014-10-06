@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reading_timestamp: 2014-04-05 21:59:37
+  ph_reading_value: 1.5
+  sensor_id: 1
+  tank_id: 1
+
+two:
+  reading_timestamp: 2014-04-05 21:59:37
+  ph_reading_value: 1.5
+  sensor_id: 1
+  tank_id: 1

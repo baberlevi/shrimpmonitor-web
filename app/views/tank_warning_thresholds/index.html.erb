@@ -1,0 +1,39 @@
+<h1>Listing tank_warning_thresholds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tank</th>
+      <th>Ph threshold</th>
+      <th>Do threshold</th>
+      <th>Orp threshold</th>
+      <th>K1 threshold</th>
+      <th>K10 threshold</th>
+      <th>Temp threshold</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tank_warning_thresholds.each do |tank_warning_threshold| %>
+      <tr>
+        <td><%= tank_warning_threshold.tank_id %></td>
+        <td><%= tank_warning_threshold.ph_threshold %></td>
+        <td><%= tank_warning_threshold.do_threshold %></td>
+        <td><%= tank_warning_threshold.orp_threshold %></td>
+        <td><%= tank_warning_threshold.k1_threshold %></td>
+        <td><%= tank_warning_threshold.k10_threshold %></td>
+        <td><%= tank_warning_threshold.temp_threshold %></td>
+        <td><%= link_to 'Show', tank_warning_threshold %></td>
+        <td><%= link_to 'Edit', edit_tank_warning_threshold_path(tank_warning_threshold) %></td>
+        <td><%= link_to 'Destroy', tank_warning_threshold, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tank warning threshold', new_tank_warning_threshold_path %>

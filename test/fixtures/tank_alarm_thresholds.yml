@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tank_id: 1
+  ph_threshold: 1.5
+  do_threshold: 1.5
+  orp_threshold: 1.5
+  k1_threshold: 1.5
+  k10_threshold: 1.5
+  temp_threshold: 1.5
+
+two:
+  tank_id: 1
+  ph_threshold: 1.5
+  do_threshold: 1.5
+  orp_threshold: 1.5
+  k1_threshold: 1.5
+  k10_threshold: 1.5
+  temp_threshold: 1.5

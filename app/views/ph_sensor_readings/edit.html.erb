@@ -1,0 +1,9 @@
+<%- model_class = PhSensorReading -%>
+<% if can? :update, PhSensorReading %>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>
+<% else %>
+  <h1>Your permission does not allow you to edit.</h1>
+<% end %>

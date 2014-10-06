@@ -1,0 +1,31 @@
+<h1>Listing tanks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Site</th>
+      <th>Site tank label</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tanks.each do |tank| %>
+      <tr>
+        <td><%= tank.site_id %></td>
+        <td><%= tank.site_tank_label %></td>
+        <td><%= tank.description %></td>
+        <td><%= link_to 'Show', tank %></td>
+        <td><%= link_to 'Edit', edit_tank_path(tank) %></td>
+        <td><%= link_to 'Destroy', tank, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tank', new_tank_path %>
