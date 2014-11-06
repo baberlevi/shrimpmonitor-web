@@ -48,7 +48,7 @@ Using the following gems:
 
 ##Documentation 
 
-Is essentialiy non existent so far - will add when I have more time.
+Is essentially non existent so far - will add when I have more time.
 
 ##Tests
 
